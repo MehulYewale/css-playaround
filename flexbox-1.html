@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /*
+        Default value for flex items
+        order: 0 (helps to set column order)
+        flex-grow: 0
+        flex-shrink: 1
+        flex-basis: auto (flex-basis is like fixed width for that element, It sets the size of the content box )
+        flex: 0 1 auto;
+        width: auto;
+        height: auto;
+        align-self:auto; (use to override on align-items property)
+        Note that float, clear and vertical-align have no effect on a flex item.
+        */
+
+        /*
+        Default values for flex box (container)
+        width/height: auto;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        flex-flow: nowrap row;
+        justify-content/align-items/align-content: flex-start;
+        Align contents works similar to justify content but with  cross(vertical) axis
+        we can used flex inside flex
+        */
+
+    .f-container {
+        display: flex;
+        border: 4px solid tomato;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .f-item {
+        padding: 4px;
+        font-size: 2em;
+        border: 1px solid black;
+        background: darkgray;
+    }
+    .first .f-item-5 {
+        flex-grow:1; 
+        text-align: center;
+    }
+
+    .f-container.second {
+        height: 150px;
+        align-items: baseline; /* align-items for vertical alignment(cross-axis)  Default: flex-start*/
+    }
+    .second .f-item-5 {
+        align-self:stretch; /* to override on align-items value */
+        order: -1; /* to display column fist */
+    }
+
+    .f-container.third {
+        justify-content: space-evenly; /* justiy-content for horzontal alignment(main-axis) Default: flex-start */ 
+    }
+
+    .fourth .f-item-5 {
+        flex:1; /* it grows only if container has additional width */
+    }
+    .fourth .f-item-4 {
+        flex: 0 0 800px; 
+        /* to add fixed width to the perticular element just like width 
+            because width does not work as expected */
+        /* we can't set fixed width without making flex-shrink 0 */
+            
+        height: auto;  /* we can specify height for that element */ 
+    }
+    .fifth .f-item-4 {
+        margin-left: auto; /* for horizontal alignment */
+    }
+    .f-container.sixth {
+        flex-wrap: wrap-reverse;  /* nowrap | wrap | wrap-reverse  Default: nowrap */
+        /* create multiline grid if items length is more than conatiner 
+        it works on rows switching not on column*/
+    }
+    .f-container.seventh {
+        flex-direction: row-reverse; /* flex-direction: row | row-reverse | column | column-reverse; Default: row */
+        /* it helps to reorder the columns and display column wise data */
+    }
+
+    </style>
+</head>
+<body>
+
+    <h3> * Note that float, clear and vertical-align have no effect on a flex item.  </h3>
+    <div class="f-container">
+        <div class="f-item f-item-1">flex item 1</div>
+        <div class="f-item f-item-2">flex item 2</div>
+        <div class="f-item f-item-3">flex item 3</div>
+        <div class="f-item f-item-4">flex item 4</div>
+        <div class="f-item f-item-5">flex item 5</div>
+    </div>
+
+    <h3>1. flex grow will occupied remaining space-width with container</h3>
+    <div class="f-container first">
+        <div class="f-item f-item-1">flex item 1</div>
+        <div class="f-item f-item-2">flex item 2</div>
+        <div class="f-item f-item-3">flex item 3</div>
+        <div class="f-item f-item-4">flex item 4</div>
+        <div class="f-item f-item-5">flex item 5 flex-grow:1 tex-align:center</div>
+    </div>
+
+    <h3>2. align-items: works on cross axis (for veritcal-height alignment)</h3>
+    <div class="f-container second">
+        <div class="f-item f-item-1">flex item 1</div>
+        <div class="f-item f-item-2">flex item 2 align-items: baseline; will set min-height for that flex items or if fixed height to container</div>
+        <div class="f-item f-item-3">flex item 3</div>
+        <div class="f-item f-item-4">flex item 4</div>
+        <div class="f-item f-item-5">flex item 5</div>
+    </div>
+
+    <h3>3. justify-content: works for horizontal alignment ex: justify-content: space-evenly</h3>
+    <div class="f-container third">
+        <div class="f-item f-item-1">flex item 1</div>
+        <div class="f-item f-item-2">flex item 2</div>
+        <div class="f-item f-item-3">flex item 3</div>
+        <div class="f-item f-item-4">flex item 4</div>
+        <div class="f-item f-item-5">flex item 5</div>
+    </div>
+
+    <h3>4. flex-basis to give fixed width for that element (%/px/em)</h3>
+    <div class="f-container fourth">
+        <div class="f-item f-item-1">flex item 1</div>
+        <div class="f-item f-item-2">flex item 2</div>
+        <div class="f-item f-item-3">flex item 3</div>
+        <div class="f-item f-item-4">flex item 4 this has fixed width flex: 0 0 800px; (can't set if shrink value > 0)</div>
+        <div class="f-item f-item-5">flex item 5</div>
+    </div>
+
+    <h3>5. margin: auto/0 auto to set alignment ex: f-item-4 -- margin-left:auto</h3>
+    <div class="f-container fifth">
+        <div class="f-item f-item-1">flex item 1</div>
+        <div class="f-item f-item-2">flex item 2</div>
+        <div class="f-item f-item-3">flex item 3</div>
+        <div class="f-item f-item-4">flex item 4 </div>
+        <div class="f-item f-item-5">flex item 5</div>
+    </div>
+
+    <h3>6. flex-wrap : create multiline grid, works on row switch ex : flex-wrap: wrap-reverse (bottom to top); ( flex-wrap: nowrap | wrap | wrap-reverse;)  Default : nowrap</h3>
+    <div class="f-container sixth">
+        <div class="f-item f-item-1">flex item 1</div>
+        <div class="f-item f-item-2">flex item 2</div>
+        <div class="f-item f-item-3">flex item 3</div>
+        <div class="f-item f-item-4">flex item 4 </div>
+        <div class="f-item f-item-5">flex item 5</div>
+        <div class="f-item f-item-6">flex item 6</div>
+        <div class="f-item f-item-7">flex item 7</div>
+        <div class="f-item f-item-8">flex item 8</div>
+    </div>
+
+    <h3>7. flex-direction :  works on column switch, column-wise display ex : flex-direction: row-reverse; ( flex-direction: row | row-reverse | column | column-reverse;)  Default : row</h3>
+    <div class="f-container seventh">
+        <div class="f-item f-item-1">flex item 1</div>
+        <div class="f-item f-item-2">flex item 2</div>
+        <div class="f-item f-item-3">flex item 3</div>
+        <div class="f-item f-item-4">flex item 4 </div>
+        <div class="f-item f-item-5">flex item 5</div>
+        <div class="f-item f-item-6">flex item 6</div>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+5 Sept 2019
+C/O- https://placeholder.com/ --creating images
+
+https://via.placeholder.com/150/0000FF/808080 ?Text=Digital.com
+https://via.placeholder.com/150
+
+<img src="https://via.placeholder.com/150">
+<img src="https://placehold.it/60x60" alt="placeholder">
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Typical_Use_Cases_of_Flexbox
+https://www.quackit.com/css/flexbox/examples/
+
+
+
